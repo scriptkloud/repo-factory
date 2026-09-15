@@ -8,8 +8,9 @@ It separates the request experience, policy enforcement, approval flow, and fina
 
 The system is built around four repositories and one orchestrator:
 
-1. IssueOps form in the self-service repository
-	- This is the entry point for users.
+1. Self-service repository (this repository)
+    - This is the entry point for users.
+    - Hosts the IssueOps form used to submit repository creation requests.
 	- A user opens an issue and fills in the requested repository details such as name, purpose, visibility, team ownership, and other metadata.
 	- The issue acts as the source of truth for the request.
 

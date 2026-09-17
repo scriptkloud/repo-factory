@@ -1,0 +1,43 @@
+name: Repository creation request
+description: Request a new GitHub repository
+title: "[Repository Request]: "
+labels:
+  - repository-request
+body:
+  - type: input
+    id: repository_name
+    attributes:
+      label: Repository name
+      description: Enter the name for the new repository.
+      placeholder: payments-api
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Explain the purpose of the repository and what it will contain.
+      placeholder: API for processing payments.
+    validations:
+      required: true
+
+  - type: input
+    id: owning_team
+    attributes:
+      label: Owning team
+      description: Enter the team responsible for maintaining the repository.
+      placeholder: team-payments
+    validations:
+      required: true
+
+  - type: dropdown
+    id: visibility
+    attributes:
+      label: Repository visibility
+      description: Select who should be able to access the repository.
+      options:
+        - public
+        - private
+    validations:
+      required: true

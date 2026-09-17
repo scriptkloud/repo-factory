@@ -38,6 +38,8 @@ body:
       description: Select the highest classification of data stored or processed by the repository.
       options:
         - public
-        - private
+        - internal
+        - confidential
+        - restricted
     validations:
       required: true

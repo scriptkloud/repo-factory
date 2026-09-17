@@ -40,7 +40,7 @@ The system is built around four repositories and one orchestrator:
 	  data_classification: confidential
 	```
 
-4. Orchestrator GitHub App
+4. Orchestrator GitHub App (backend)
 	- This is the automation layer that coordinates the whole flow.
 	- It listens for issues opened in the self-service repository.
 	- It validates the request against the policies repository.
@@ -61,6 +61,32 @@ flowchart TD
 	M -->|No| D[Changes requested or request closed]
 	M -->|Yes| A
 	A --> C[GitHub App executes\nrepository creation]
+```
+
+## Architecture Boundaries
+
+```mermaid
+flowchart LR
+    User[User] --> IssueForm[IssueOps issue]
+    IssueForm --> Webhook[GitHub webhook adapter]
+    Webhook --> App[Repo Factory application]
+
+    App --> IssueReader[Issue adapter]
+    App --> PolicyReader[Policy adapter]
+    App --> Validator[Domain validation]
+    App --> Registry[Registry adapter]
+    App --> Provisioner[Provisioning adapter]
+
+    PolicyReader --> Policies[Policy repository]
+    Registry --> RegistryRepo[Repository registry]
+    Provisioner --> GitHubAPI[GitHub API]
+
+    RegistryRepo --> Approval[Human review and merge]
+    Approval --> Webhook
+
+    Validator -->|Invalid| Feedback[Update issue with feedback]
+    Validator -->|Valid| Registry
+    App -->|Merged registry PR| Provisioner
 ```
 
 ## Request Lifecycle

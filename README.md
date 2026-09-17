@@ -11,7 +11,7 @@ The system is built around four repositories and one orchestrator:
 1. Self-service repository (this repository)
     - This is the entry point for users.
     - Hosts the IssueOps form used to submit repository creation requests.
-	- A user opens an issue and fills in the requested repository details such as name, purpose, visibility, team ownership, and other metadata.
+	- A user opens an issue and provides the repository name, description, owning team, and visibility (`public` or `private`).
 	- The issue acts as the source of truth for the request.
 
 2. Policies repository
@@ -32,12 +32,10 @@ The system is built around four repositories and one orchestrator:
 	repository_creation_request: "https://github.com/your-org/self-service/issues/123"
 	repository:
 	  name: payments-api
+	  description: API for processing payments
 	  visibility: private
 	ownership:
 	  team: payments-platform
-	metadata:
-	  environment: production
-	  data_classification: confidential
 	```
 
 4. Orchestrator GitHub App (backend)

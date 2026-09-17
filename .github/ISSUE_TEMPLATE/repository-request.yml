@@ -32,14 +32,12 @@ body:
       required: true
 
   - type: dropdown
-    id: data_classification
+    id: visibility
     attributes:
-      label: Data classification
-      description: Select the highest classification of data stored or processed by the repository.
+      label: Repository visibility
+      description: Select who should be able to access the repository.
       options:
         - public
-        - internal
-        - confidential
-        - restricted
+        - private
     validations:
       required: true

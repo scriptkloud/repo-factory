@@ -55,6 +55,7 @@ requester: octocat
 - **Queue, then durable orchestration.** The webhook only verifies the signature and enqueues, so GitHub gets a fast answer. The orchestration is keyed by the webhook delivery ID, so repeated deliveries are not processed twice.
 - **Safe to retry.** An existing registry pull request or repository is reused instead of duplicated, and activities retry before the requester is told that creation failed.
 - **The requester is never left guessing.** Every outcome appears as a comment on their issue.
+- **Abuse protection.** The intake is public, so the service accepts one request per day. The slot is claimed with an atomic table insert, and refused requests are told when to retry.
 - **Secrets in Key Vault.** The GitHub App key and the webhook secret are Key Vault references, and Azure access from CI uses OpenID Connect with no stored credentials.
 
 ## Roadmap

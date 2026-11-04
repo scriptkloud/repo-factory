@@ -8,7 +8,7 @@ Self-service GitHub repository creation, with policy checks and a human approval
 
 ```mermaid
 flowchart TD
-	U[User] --> I[Issue Form\nrepo-factory]
+	U[Invited user] --> I[Issue Form\nprivate demo repository]
 	I --> A[Orchestrator\nGitHub App on Azure Functions]
 	A -->|reads rules| P[repo-factory-policies]
 	P --> V{Valid?}
@@ -26,11 +26,16 @@ flowchart TD
 3. **Approve.** A valid request becomes a pull request in the registry that adds `repositories/<name>.yml`. A reviewer merges it, and the merge is the approval.
 4. **Create.** On merge, the orchestrator checks the record against the policy again, creates the repository, and comments the link on the issue.
 
+## Try it
+
+This repository is the public showcase. The live Issue Form runs in a private demo repository, so that only invited people can send requests to the service. To try it, ask for access to `repo-factory-demo`, open an issue with the form and watch the bot reply.
+
 ## Repositories
 
 | Repository | Role |
 |---|---|
-| `repo-factory` | Entry point: the Issue Form and this documentation |
+| `repo-factory` | Public showcase: this documentation |
+| `repo-factory-demo` (private) | Entry point: the Issue Form, open to invited users only |
 | `repo-factory-policies` | The rules every request is checked against |
 | `repo-factory-registry` | Approval record: one metadata file per repository |
 | `repo-factory-app` | The orchestrator, an Azure Function App acting as a GitHub App |
@@ -55,7 +60,7 @@ requester: octocat
 - **Queue, then durable orchestration.** The webhook only verifies the signature and enqueues, so GitHub gets a fast answer. The orchestration is keyed by the webhook delivery ID, so repeated deliveries are not processed twice.
 - **Safe to retry.** An existing registry pull request or repository is reused instead of duplicated, and activities retry before the requester is told that creation failed.
 - **The requester is never left guessing.** Every outcome appears as a comment on their issue.
-- **Abuse protection.** The intake is public, so the service accepts one request per day. The slot is claimed with an atomic table insert, and refused requests are told when to retry.
+- **Abuse protection.** The form lives in a private repository, so only invited users can reach the service. As a second layer, it accepts one request per day. The slot is claimed with an atomic table insert, and refused requests are told when to retry.
 - **Secrets in Key Vault.** The GitHub App key and the webhook secret are Key Vault references, and Azure access from CI uses OpenID Connect with no stored credentials.
 
 ## Roadmap

@@ -16,6 +16,6 @@ jobs:
   semver-tag:
     permissions:
       contents: write
-    uses: scriptkloud/reusable-workflows/.github/workflows/semver-tag.yml@main
+    uses: scriptkloud/reusable-workflows/.github/workflows/semver-tag.yml@v0.1.1
     with:
       bump: ${{ inputs.bump }}

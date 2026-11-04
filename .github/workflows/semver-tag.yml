@@ -1,0 +1,21 @@
+name: Create SemVer tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version component to bump
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: patch
+
+jobs:
+  semver-tag:
+    permissions:
+      contents: write
+    uses: scriptkloud/reusable-workflows/.github/workflows/semver-tag.yml@main
+    with:
+      bump: ${{ inputs.bump }}

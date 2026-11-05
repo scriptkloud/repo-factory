@@ -52,7 +52,7 @@ flowchart TD
 ```
 
 1. **Request.** The user opens an issue with the repository name, description, owning team and visibility. The bot replies that the request is being validated.
-2. **Validate.** The orchestrator checks the request against the policy file and rejects names that already exist. Violations are listed in a comment, and editing the issue triggers a new check.
+2. **Validate.** The orchestrator checks the request against the policy file, rejects names that already exist, and verifies that the owning team exists in the GitHub organization. Violations are listed in a comment, and editing the issue triggers a new check.
 3. **Approve.** A valid request becomes a pull request in the registry that adds `repositories/<name>.yml`. Requests from members of the `repo-creators` team are merged automatically. For everyone else, a reviewer merges it. Either way, the merge is the approval.
 4. **Create.** On merge, the orchestrator checks the record against the policy again, creates the repository, and comments the link on the issue.
 

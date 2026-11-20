@@ -56,6 +56,10 @@ flowchart TD
 3. **Approve.** A valid request becomes a pull request in the registry that adds `repositories/<name>.yml`. Requests from members of the `repo-creators` team are merged automatically. For everyone else, a reviewer merges it. Either way, the merge is the approval.
 4. **Create.** On merge, the orchestrator checks the record against the policy again, creates the repository, and comments the link on the issue.
 
+## Demo
+
+> A short demo recording of the bot replying on a request issue will be linked here.
+
 ## Try it
 
 This repository is the public showcase. The live Issue Form runs in a private demo repository, so that only invited people can send requests to the service. To try it, ask for access to `repo-factory-demo`, open an issue with the form and watch the bot reply.
@@ -70,6 +74,8 @@ This repository is the public showcase. The live Issue Form runs in a private de
 | `repo-factory-registry` | Approval record: one metadata file per repository |
 | `repo-factory-app` | The orchestrator, an Azure Function App acting as a GitHub App |
 | `repo-factory-infra` | Terraform for the Azure resources and the deploy workflow |
+
+> **Source code access.** `repo-factory-app` and `repo-factory-infra` are private because they hold deployment configuration for a live environment. They are available on request, and I am happy to walk through the code in an interview.
 
 A registry record looks like this:
 

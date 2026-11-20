@@ -58,7 +58,9 @@ flowchart TD
 
 ## Demo
 
-[Watch the 1-minute demo](docs/demo.mp4), built from real request issues: automatic approval for a trusted requester, a manual review that is rejected, and the daily request limit.
+![Repo Factory demo](docs/demo.gif)
+
+Built from real request issues: automatic approval for a trusted requester, a manual review that is rejected, and the daily request limit.
 
 ## Try it
 

@@ -58,7 +58,7 @@ flowchart TD
 
 ## Demo
 
-> A short demo recording of the bot replying on a request issue will be linked here.
+[Watch the 1-minute demo](docs/demo.mp4), built from real request issues: automatic approval for a trusted requester, a manual review that is rejected, and the daily request limit.
 
 ## Try it
 
